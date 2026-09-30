@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>人生の実績</title>
+<title>Jinseki</title>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f1efe8;--panel:#fff;--ink:#242421;--mute:#6f6d63;--line:#242421;--acc:#3f8f3a;--gold:#d9a521;--lock:#dcd9cd;
+:root{--bg:#f1efe8;--panel:#fff;--ink:#242421;--mute:#6f6d63;--line:#242421;--acc:#3f8f3a;--gold:#d9a521;--lock:#dcd9cd;--pur:#7b2fbe;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1e1b;--panel:#2a2b27;--ink:#ecebe3;--mute:#a09e92;--line:#ecebe3;--acc:#67b85f;--gold:#f0bd3c;--lock:#3a3b36}}
-:root[data-theme="dark"]{--bg:#1d1e1b;--panel:#2a2b27;--ink:#ecebe3;--mute:#a09e92;--line:#ecebe3;--acc:#67b85f;--gold:#f0bd3c;--lock:#3a3b36}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1e1b;--panel:#2a2b27;--ink:#ecebe3;--mute:#a09e92;--line:#ecebe3;--acc:#67b85f;--gold:#f0bd3c;--lock:#3a3b36;--pur:#b47cf0}}
+:root[data-theme="dark"]{--bg:#1d1e1b;--panel:#2a2b27;--ink:#ecebe3;--mute:#a09e92;--line:#ecebe3;--acc:#67b85f;--gold:#f0bd3c;--lock:#3a3b36;--pur:#b47cf0}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"DotGothic16","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;line-height:1.6}
 main{max-width:640px;margin:0 auto;padding:20px 16px 60px}
-h1{font-size:26px;margin:8px 0 14px}
+h1{font-size:40px;margin:8px 0 14px;letter-spacing:.5px}
 .box{background:var(--panel);border:3px solid var(--line);box-shadow:4px 4px 0 var(--line);padding:14px}
 .score{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .pts{font-size:40px;line-height:1;color:var(--gold);text-shadow:2px 2px 0 var(--line)}
@@ -57,6 +57,9 @@ ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 @keyframes in{from{transform:translateX(120%)}to{transform:none}}
 @media (prefers-reduced-motion:reduce){.toast{animation:none}.fill{transition:none}}
 [hidden]{display:none!important}
+.ach.secret{border-color:var(--pur);box-shadow:4px 4px 0 var(--pur)}
+.secret .ico{border-color:var(--pur)}.secret.done .ico{background:var(--pur)}
+.secret-l{color:var(--pur);font-size:13px}
 .modes{display:grid;gap:14px;margin-top:16px}
 .mode{display:grid;gap:4px;text-align:left;padding:18px;background:var(--panel);color:var(--ink);font-size:16px}
 .mode:hover{background:var(--bg)}
@@ -66,19 +69,19 @@ ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 </head>
 <body>
 <main id="start">
-<h1>人生の実績</h1>
+<h1>Jinseki</h1>
 <p class="small">モードを選んでスタート</p>
 <div class="modes">
-  <button type="button" class="mode box" id="m-custom"><span class="mi">✏️</span><span class="mn">自分で追加モード</span><span class="small">実績もタグも、自由に追加・削除できる</span><span class="small" id="pg-custom"></span></button>
-  <button type="button" class="mode box" id="m-preset"><span class="mi">🏅</span><span class="mn">標準実績モード</span><span class="small">最初から入っている実績だけに挑戦する</span><span class="small" id="pg-preset"></span></button>
+  <button type="button" class="mode box" id="m-preset"><span class="mi">🏅</span><span class="mn">基本実績モード</span><span class="small">最初から入っている実績だけに挑戦する</span><span class="small">アップデートで随時実績追加</span><span class="small" id="pg-preset"></span></button>
+  <button type="button" class="mode box" id="m-custom"><span class="mi">✏️</span><span class="mn">オリジナル実績モード</span><span class="small">実績もタグも、自由に追加・削除できる</span><span class="small" id="pg-custom"></span></button>
 </div>
 <p class="small">達成記録はモードごとに、このブラウザへ別々に保存されます。</p>
 </main>
 <main id="app" hidden>
-<div class="top"><h1>人生の実績</h1><button type="button" id="back" class="ghost" style="border:2px solid var(--line)">モード選択へ</button></div>
-<p class="small" style="margin-top:0">モード: <span id="modelabel"></span></p>
-<div id="devbar">
-  <span>🛠 開発モード: <span id="devstate">OFF</span>(バランス調整用の編集機能)</span>
+<div class="top"><h1>Jinseki</h1><button type="button" id="back" class="ghost" style="border:2px solid var(--line)">モード選択へ</button></div>
+<p class="small" style="margin-top:0">モード：<span id="modelabel"></span></p>
+<div id="devbar" hidden>
+  <span>🛠 開発者モード：<span id="devstate">OFF</span>（バランス調整用の編集機能）</span>
   <button type="button" id="devtoggle" class="ghost" style="border:2px solid var(--line)">切り替え</button>
 </div>
 <section class="box score" aria-live="polite">
@@ -89,21 +92,21 @@ ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 <div id="addsec">
 <h2>実績を追加</h2>
 <form class="box" id="f">
-  <input id="emoji" value="🏆" maxlength="4" aria-label="絵文字" style="text-align:center;font-size:22px">
+  <input id="emoji" value="🏆" maxlength="10" aria-label="絵文字" style="text-align:center;font-size:22px">
   <input id="title" placeholder="実績の名前" maxlength="40" required aria-label="実績の名前">
-  <textarea id="desc" placeholder="達成条件や説明(任意)" maxlength="120"></textarea>
+  <textarea id="desc" placeholder="達成条件や説明（任意）" maxlength="120"></textarea>
   <div style="grid-column:1/3">
-    <div class="small">タグ(2つまで)</div>
+    <div class="small">タグ（2つまで）</div>
     <div class="chips" id="fchips"></div>
     <div class="row"><input id="newtag" placeholder="新しいタグ" maxlength="8" aria-label="新しいタグ" style="flex:1"><button type="button" id="addtag">タグ追加</button></div>
   </div>
   <div class="row">
     <select id="diff" aria-label="難易度">
-      <option value="1">難易度1(1pt)かんたん</option>
-      <option value="2">難易度2(2pt)</option>
-      <option value="3" selected>難易度3(3pt)</option>
-      <option value="4">難易度4(4pt)</option>
-      <option value="5">難易度5(5pt)むずかしい</option>
+      <option value="1">難易度1（1pt）かんたん</option>
+      <option value="2">難易度2（2pt）</option>
+      <option value="3" selected>難易度3（3pt）</option>
+      <option value="4">難易度4（4pt）</option>
+      <option value="5">難易度5（5pt）むずかしい</option>
     </select>
     <button type="submit">追加</button>
   </div>
@@ -112,7 +115,7 @@ ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 
 <h2>実績一覧</h2>
 <div class="row" style="margin-bottom:10px">
-  <input id="q" type="search" placeholder="実績を検索(名前・説明・タグ)" aria-label="実績を検索" style="flex:2;min-width:140px">
+  <input id="q" type="search" placeholder="実績を検索（名前・説明・タグ）" aria-label="実績を検索" style="flex:2;min-width:140px">
   <select id="tf" aria-label="タグで絞り込み" style="flex:1;min-width:110px"></select>
 </div>
 <div class="tabs" id="tabs">
@@ -121,12 +124,12 @@ ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
   <button data-f="done" aria-pressed="false">達成済み <span id="c-done"></span></button>
 </div>
 <ul id="list"></ul>
-<h2>バックアップ・引っ越し</h2>
+<h2>バックアップ<span id="nakaguro" style="cursor:default">・</span>引っ越し</h2>
 <section class="box">
   <p class="small" id="bkhint" style="margin-top:0"></p>
   <textarea id="bk" placeholder="ここに書き出し結果が出ます。読み込むときはここに貼り付け" style="width:100%;font-size:12px;min-height:90px"></textarea>
   <div class="row" style="margin-top:8px">
-    <button type="button" id="ex">書き出す(コピー)</button>
+    <button type="button" id="ex">書き出す（コピー）</button>
     <button type="button" id="dl">ファイル保存</button>
     <button type="button" id="im">読み込む</button>
     <button type="button" id="imf">ファイルから読み込む</button>
@@ -139,7 +142,7 @@ ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 <div id="toasts"></div>
 
 <script>
-/* ===== 標準実績(ここを書き換えて実績を用意する) =====
+/* ===== 基本実績(ここを書き換えて実績を用意する) =====
    id は一意で変えないこと(達成記録がidで紐づく)。tags は最大2つ。diff は1〜5。 */
 const PRESET=[
  {id:"muf65245",emoji:"📚️",title:"チュートリアル",desc:"義務教育を修了する。",diff:2,tags:["学校","勉強"]},
@@ -192,10 +195,47 @@ const PRESET=[
  {id:"mugca3hb",emoji:"🛌",title:"退屈な日々",desc:"入院する。",diff:3,tags:["生活"]},
  {id:"mugcgydx",emoji:"🌸",title:"花より団子",desc:"花見をする。",diff:1,tags:["交流","食"]},
  {id:"mugchfrp",emoji:"💪",title:"健康体",desc:"一度も入院することなく50歳を迎える。",diff:3,tags:["運動","生活"]},
- {id:"mukhi2k8",emoji:"🎳",title:"ストライク！",desc:"ボウリングでストライクを取る。",diff:2,tags:["交流","運動"]}
+ {id:"mukhi2k8",emoji:"🎳",title:"ストライク！",desc:"ボウリングでストライクを取る。",diff:2,tags:["交流","運動"]},
+ {id:"h01",emoji:"🍀",title:"幸運",desc:"達成済みの実績が777以上になる。",diff:3,tags:[],hidden:true},
+ {id:"h02",emoji:"🎭️",title:"嘘つき",desc:"すべての実績を達成する。",diff:1,tags:[],hidden:true},
+ {id:"h03",emoji:"👨‍💻",title:"ハッカー",desc:"開発者モードをONにする。",diff:3,tags:[],hidden:true},
+ {id:"h04",emoji:"😨",title:"えぇ…（困惑）",desc:"この実績以外の隠し実績をすべて達成する。",diff:4,tags:[],hidden:true},
+ {id:"h05",emoji:"🤪",title:"奇行",desc:"「バックアップ・引っ越し」の・を10秒以内に10回クリックする。",diff:1,tags:[],hidden:true},
+ {id:"g01",emoji:"⛳️",title:"ゲームスタート",desc:"Jinsekiを初めて開く。",diff:1,tags:[],auto:true},
+ {id:"g10",emoji:"🏃",title:"駆け出し",desc:"実績を10個達成する。",diff:1,tags:[],auto:true},
+ {id:"g30",emoji:"🥉",title:"見習い",desc:"実績を30個達成する。",diff:1,tags:[],auto:true},
+ {id:"g50",emoji:"🥈",title:"一人前",desc:"実績を50個達成する。",diff:1,tags:[],auto:true},
+ {id:"g100",emoji:"🥇",title:"ベテラン",desc:"実績を100個達成する。",diff:2,tags:[],auto:true},
+ {id:"g300",emoji:"🏆️",title:"実績マスター",desc:"実績を300個達成する。",diff:3,tags:[],auto:true},
+ {id:"s01",emoji:"🗓️",title:"習慣化",desc:"7日連続でJinsekiを開く。",diff:1,tags:[],auto:true},
+ {id:"h06",emoji:"🙌",title:"復帰勢",desc:"半年ぶりにJinsekiを開く。",diff:1,tags:[],hidden:true}
 ];
 function start(MODE){
 const P=MODE==="preset";
+const todayStr=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const parseYMD=s=>{const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+let dayInfo={streak:1,cameBack:false};
+try{
+  const SK="life-achievements-daystreak-v1";
+  const prev=JSON.parse(localStorage.getItem(SK)||"null");
+  const today=todayStr();
+  let streak=1,cameBack=false;
+  if(prev&&prev.last){
+    if(prev.last===today){streak=prev.streak||1}
+    else{
+      const last=parseYMD(prev.last),now=parseYMD(today);
+      const diffDays=Math.round((now-last)/86400000);
+      if(diffDays===1){streak=(prev.streak||0)+1}
+      else{
+        const halfYearLater=new Date(last.getFullYear(),last.getMonth()+6,last.getDate());
+        if(now>=halfYearLater)cameBack=true;
+        streak=1;
+      }
+    }
+  }
+  dayInfo={streak,cameBack};
+  localStorage.setItem(SK,JSON.stringify({last:today,streak}));
+}catch(e){}
 const KEY=P?"life-achievements-preset-v1":"life-achievements-v1";
 let items=[],filter="all";
 try{items=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){items=[]}
@@ -210,7 +250,7 @@ const allTags=()=>BASE.concat(custom);
 const saveTags=()=>{try{localStorage.setItem(TKEY,JSON.stringify(custom))}catch(e){}};
 function addCustom(t){t=String(t).trim().slice(0,8);if(t&&!allTags().includes(t)){custom.push(t);saveTags()}return t}
 items.forEach((a,i)=>{if(!Array.isArray(a.tags))a.tags=[];a.tags.forEach(addCustom);if(typeof a.order!=="number")a.order=i});
-if(P){items=items.filter(x=>PRESET.some(p=>p.id===x.id));PRESET.forEach((p,i)=>{if(!items.some(x=>x.id===p.id))items.push({id:p.id,emoji:p.emoji,title:p.title,desc:p.desc,diff:p.diff,created:0,doneAt:null,tags:p.tags.slice(0,2),order:i})});save()}
+if(P){items=items.filter(x=>PRESET.some(p=>p.id===x.id));PRESET.forEach((p,i)=>{if(!items.some(x=>x.id===p.id))items.push({id:p.id,emoji:p.emoji,title:p.title,desc:p.desc,diff:p.diff,created:0,doneAt:null,tags:p.tags.slice(0,2),order:i,hidden:!!p.hidden,auto:!!p.auto})});save()}
 const note=t=>{const n=document.createElement("div");n.className="toast";n.textContent=t;$("toasts").appendChild(n);setTimeout(()=>n.remove(),2500)};
 function toggle(arr,t){const i=arr.indexOf(t);if(i>=0)arr.splice(i,1);else if(arr.length<2)arr.push(t);else note("タグは2つまでです")}
 const chips=(cur,attr)=>allTags().map(t=>`<button type="button" class="chip" ${attr} data-t="${esc(t)}" aria-pressed="${cur.includes(t)}">${esc(t)}</button>`).join("");
@@ -218,57 +258,84 @@ const renderForm=()=>{$("fchips").innerHTML=chips(sel,"")};
 const fmt=t=>{const d=new Date(t),p=n=>String(n).padStart(2,"0");return `${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`};
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
+const vis=a=>!(a.hidden||a.auto)||!!a.doneAt||devMode;
+const outItems=()=>items.filter(a=>!(a.hidden||a.auto)||a.doneAt);
+const totalDone=()=>items.filter(a=>a.doneAt).length;
+const RULES={
+  h01:()=>totalDone()>=777,
+  h02:()=>{const n=items.filter(a=>!a.hidden&&!a.auto);return n.length>0&&n.every(a=>a.doneAt)},
+  h03:()=>devMode,
+  h04:()=>items.filter(a=>a.hidden&&a.id!=="h04").every(a=>a.doneAt),
+  h05:()=>clickHit,
+  g01:()=>true,
+  g10:()=>totalDone()>=10,
+  g30:()=>totalDone()>=30,
+  g50:()=>totalDone()>=50,
+  g100:()=>totalDone()>=100,
+  g300:()=>totalDone()>=300,
+  s01:()=>dayInfo.streak>=7,
+  h06:()=>dayInfo.cameBack
+};
+let clickHit=false;
+function checkHidden(){
+  if(!P)return;
+  let hit;
+  do{hit=false;items.forEach(a=>{if((a.hidden||a.auto)&&!a.doneAt&&RULES[a.id]&&RULES[a.id]()){a.doneAt=Date.now();toast(a);hit=true}})}while(hit);
+  save();
+}
 function toast(a){
-  const t=document.createElement("div");t.className="toast";
-  t.innerHTML=`<span style="font-size:26px">${esc(a.emoji)}</span><div><b>実績解除!</b>${esc(a.title)} +${a.diff}pt</div>`;
-  $("toasts").appendChild(t);setTimeout(()=>t.remove(),4000);
+  const t=document.createElement("div");t.className="toast";if(a.hidden&&!a.auto)t.style.borderColor="#b47cf0";
+  t.innerHTML=`<span style="font-size:26px">${esc(a.emoji)}</span><div><b>${a.hidden&&!a.auto?"隠し実績解除！":"実績解除！"}</b>${esc(a.title)} +${a.diff}pt</div>`;
+  $("toasts").appendChild(t);setTimeout(()=>t.remove(),(a.hidden&&!a.auto)?6000:4000);
 }
 function render(){
+  const V=items.filter(vis);
   const total=items.filter(a=>a.doneAt).reduce((s,a)=>s+a.diff,0);
   const lv=Math.floor(total/10)+1;
   $("pts").textContent=total;$("lv").textContent=lv;
   $("fill").style.width=(total%10)*10+"%";
-  $("next").textContent=`次のレベルまであと${10-total%10}pt(${items.filter(a=>a.doneAt).length}/${items.length}件達成)`;
+  $("next").textContent=`次のレベルまであと${10-total%10}pt（${V.filter(a=>a.doneAt).length}/${V.length}件達成）`;
   const q=$("q").value.trim().toLowerCase();
   const tfEl=$("tf"),cur=tfEl.value;
   tfEl.innerHTML='<option value="">すべてのタグ</option>'+allTags().map(t=>`<option>${esc(t)}</option>`).join("");
   tfEl.value=allTags().includes(cur)?cur:"";
   const tf=tfEl.value;
-  const doneN=items.filter(a=>a.doneAt).length;
-  $("c-all").textContent=`(${items.length})`;
-  $("c-todo").textContent=`(${items.length-doneN})`;
-  $("c-done").textContent=`(${doneN})`;
-  const view=items.filter(a=>filter==="all"||(filter==="done")===!!a.doneAt)
+  const doneN=V.filter(a=>a.doneAt).length;
+  $("c-all").textContent=`（${V.length}）`;
+  $("c-todo").textContent=`（${V.length-doneN}）`;
+  $("c-done").textContent=`（${doneN}）`;
+  const view=V.filter(a=>filter==="all"||(filter==="done")===!!a.doneAt)
     .filter(a=>!tf||a.tags.includes(tf))
     .filter(a=>!q||(a.title+" "+a.desc+" "+a.tags.join(" ")).toLowerCase().includes(q))
     .sort(devMode?(a,b)=>a.order-b.order:(a,b)=>(!!a.doneAt-!!b.doneAt)||(a.doneAt?b.doneAt-a.doneAt:P?a.order-b.order:b.created-a.created));
   $("list").innerHTML=view.length?view.map(a=>`
-    <li class="box ach ${a.doneAt?"done":""}" ${devMode?`draggable="true" data-drag="${a.id}"`:""}>
+    <li class="box ach ${a.doneAt?"done":""}${a.hidden&&!a.auto?" secret":""}" ${devMode?`draggable="true" data-drag="${a.id}"`:""}>
       ${devMode?`<span class="small" style="grid-column:1/-1;cursor:grab">↕ ドラッグで並び替え</span>`:""}
       <div class="ico">${esc(a.emoji)}</div>
       <div><div class="name">${esc(a.title)}</div>
         ${editing===a.id?`<div class="chips">${chips(a.tags,'data-e="1"')}</div>`:a.tags.length?`<div>${a.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>`:""}
         ${a.desc?`<div class="small">${esc(a.desc)}</div>`:""}
+        ${a.hidden&&!a.auto?`<div class="secret-l">隠し実績${a.doneAt?"":"（未解除・開発者モードのみ表示）"}</div>`:""}
         <div><span class="stars">${stars(a.diff)}</span> <span class="small">${a.diff}pt${a.doneAt?" ・ "+fmt(a.doneAt):""}</span></div></div>
       <div class="acts">
-        ${a.doneAt?`<button class="ghost" data-a="undo" data-id="${a.id}">取り消す</button>`:`<button data-a="done" data-id="${a.id}">達成!</button>`}
-        <button class="ghost" data-a="tag" data-id="${a.id}">${editing===a.id?"タグ完了":"タグ変更"}</button>
+        ${a.doneAt?((a.hidden||a.auto)&&!devMode?"":`<button class="ghost" data-a="undo" data-id="${a.id}">取り消す</button>`):`<button data-a="done" data-id="${a.id}">達成！</button>`}
+        ${(!P||devMode)?`<button class="ghost" data-a="tag" data-id="${a.id}">${editing===a.id?"タグ完了":"タグ変更"}</button>`:""}
         ${devMode?`<button class="ghost" data-a="editfull" data-id="${a.id}">${editingFull===a.id?"編集を閉じる":"編集"}</button>`:""}
         ${P?"":`<button class="ghost" data-a="del" data-id="${a.id}">削除</button>`}
       </div>
       ${devMode&&editingFull===a.id?`
       <div class="edit-row">
-        <input data-ef="emoji" data-id="${a.id}" value="${esc(a.emoji)}" maxlength="4" aria-label="絵文字" style="text-align:center;font-size:20px">
+        <input data-ef="emoji" data-id="${a.id}" value="${esc(a.emoji)}" maxlength="10" aria-label="絵文字" style="text-align:center;font-size:20px">
         <input data-ef="title" data-id="${a.id}" value="${esc(a.title)}" maxlength="40" aria-label="実績の名前">
         <textarea data-ef="desc" data-id="${a.id}" maxlength="120" aria-label="説明">${esc(a.desc)}</textarea>
         <div class="row">
           <select data-ef="diff" data-id="${a.id}" aria-label="難易度">
-            ${[1,2,3,4,5].map(n=>`<option value="${n}" ${a.diff===n?"selected":""}>難易度${n}(${n}pt)</option>`).join("")}
+            ${[1,2,3,4,5].map(n=>`<option value="${n}" ${a.diff===n?"selected":""}>難易度${n}（${n}pt）</option>`).join("")}
           </select>
           <button type="button" class="ghost" data-a="savefull" data-id="${a.id}" style="border:2px solid var(--line)">保存</button>
         </div>
       </div>`:""}
-      </li>`).join(""):`<li class="empty">${items.length?"該当する実績はありません":(P?"標準実績はまだ登録されていません。":"まだ実績がありません。上のフォームから最初の1つを追加しよう。")}</li>`;
+      </li>`).join(""):`<li class="empty">${items.length?"該当する実績はありません":(P?"基本実績はまだ登録されていません。":"まだ実績がありません。上のフォームから最初の1つを追加しよう。")}</li>`;
 }
 $("f").onsubmit=e=>{
   e.preventDefault();
@@ -279,7 +346,7 @@ $("list").onclick=e=>{
   const b=e.target.closest("button");if(!b)return;
   if(b.dataset.t){const c=items.find(x=>x.id===editing);if(c){toggle(c.tags,b.dataset.t);save();render()}return}
   const a=items.find(x=>x.id===b.dataset.id);if(!a)return;
-  if(b.dataset.a==="done"){a.doneAt=Date.now();toast(a)}
+  if(b.dataset.a==="done"){a.doneAt=Date.now();toast(a);checkHidden()}
   else if(b.dataset.a==="undo"){a.doneAt=null}
   else if(b.dataset.a==="tag"){editing=editing===a.id?null:a.id}
   else if(b.dataset.a==="editfull"){editingFull=editingFull===a.id?null:a.id;render();return}
@@ -302,23 +369,28 @@ $("tabs").onclick=e=>{
 };
 const say=t=>$("msg").textContent=t;
 $("ex").onclick=async()=>{
-  $("bk").value=JSON.stringify({app:"life-achievements",items,customTags:custom},null,1);
-  try{await navigator.clipboard.writeText($("bk").value);say("コピーしました。("+items.length+"件)")}
+  $("bk").value=JSON.stringify({app:"life-achievements",items:outItems(),customTags:custom},null,1);
+  try{await navigator.clipboard.writeText($("bk").value);say("コピーしました。（"+outItems().length+"件）")}
   catch(e){$("bk").select();say("枠内のテキストを全選択してコピーしてください。")}
 };
 $("dl").onclick=()=>{
   try{
     const a=document.createElement("a");
-    a.href=URL.createObjectURL(new Blob([JSON.stringify({app:"life-achievements",items,customTags:custom},null,1)],{type:"application/json"}));
+    a.href=URL.createObjectURL(new Blob([JSON.stringify({app:"life-achievements",items:outItems(),customTags:custom},null,1)],{type:"application/json"}));
     a.download=P?"life-achievements-progress.json":"life-achievements.json";a.click();say("保存しました。動かない場合は「書き出す」を使ってください。");
   }catch(e){say("保存できませんでした。「書き出す」を使ってください。")}
 };
+const DEVKEY="名も無きパスタ(2686％)".normalize("NFKC");
 function importFrom(text){
+  if(text.normalize("NFKC").replace(/\s/g,"")===DEVKEY){
+    devMode=true;editingFull=null;$("devbar").hidden=false;$("devstate").textContent="ON";$("bk").value="";
+    say("開発者モードをONにしました。");checkHidden();render();return;
+  }
   try{
     const d=JSON.parse(text);
     const src=Array.isArray(d)?d:d.items;
     if(!Array.isArray(src))throw 0;
-    if(P){let n=0;src.forEach(a=>{if(!a||!a.doneAt)return;const t=items.find(x=>x.id===a.id);if(!t||t.doneAt)return;t.doneAt=+a.doneAt;n++});save();render();say(n+"件の達成記録を読み込みました。(すでに達成済みのものは変更しません)");return}
+    if(P){let n=0;src.forEach(a=>{if(!a||!a.doneAt)return;const t=items.find(x=>x.id===a.id);if(!t||t.doneAt)return;t.doneAt=+a.doneAt;n++});checkHidden();save();render();say(n+"件の達成記録を読み込みました。（すでに達成済みのものは変更しません）");return}
     if(Array.isArray(d.customTags))d.customTags.forEach(t=>typeof t==="string"&&addCustom(t));
     let n=0;
     src.forEach(a=>{
@@ -326,7 +398,7 @@ function importFrom(text){
       const tg=(Array.isArray(a.tags)?a.tags:[]).filter(t=>typeof t==="string"&&t.trim()).map(addCustom).filter(Boolean).slice(0,2);
       items.push({id:String(a.id||Date.now().toString(36)+n),emoji:String(a.emoji||"🏆"),title:a.title,desc:String(a.desc||""),diff:Math.min(5,Math.max(1,+a.diff||3)),created:+a.created||Date.now(),doneAt:a.doneAt?+a.doneAt:null,tags:tg,order:items.length});n++;
     });
-    save();renderForm();render();say(n+"件を追加しました。(同じ実績は重複しません)");
+    save();renderForm();render();say(n+"件を追加しました。（同じ実績は重複しません）");
   }catch(e){say("読み込めませんでした。書き出したテキストやファイルの内容を確認してください。")}
 }
 $("im").onclick=()=>importFrom($("bk").value);
@@ -370,18 +442,25 @@ $("list").ondrop=e=>{
   ordered.forEach((a,i)=>a.order=i);
   dragId=null;save();render();
 };
+let clickTimes=[];
+$("nakaguro").onclick=()=>{
+  if(!P)return;
+  const t=Date.now();clickTimes=clickTimes.filter(x=>t-x<10000);clickTimes.push(t);
+  if(clickTimes.length>=10){clickHit=true;checkHidden();clickHit=false;clickTimes=[];render()}
+};
 $("devtoggle").onclick=()=>{
-  devMode=!devMode;editingFull=null;
+  devMode=!devMode;editingFull=null;if(P&&!devMode)editing=null;if(devMode)checkHidden();
   $("devstate").textContent=devMode?"ON":"OFF";
   render();
 };
 renderForm();
 $("addsec").hidden=P;
-$("modelabel").textContent=P?"標準実績モード":"自分で追加モード";
+$("modelabel").textContent=P?"基本実績モード":"オリジナル実績モード";
 $("bkhint").textContent=P?"書き出したテキストやファイルを別の端末で読み込めば、達成記録を引き継げます。":"書き出したテキストを別の端末の「読み込む」に貼り付ければ、実績を引き継げます。";
-$("devstate").textContent="OFF";$("q").value="";$("bk").value="";$("msg").textContent="";
+$("devstate").textContent="OFF";$("devbar").hidden=true;$("q").value="";$("bk").value="";$("msg").textContent="";
 document.querySelectorAll("#tabs button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.f==="all"));
 $("back").onclick=showStart;
+checkHidden();
 render();
 }
 const G=id=>document.getElementById(id);
@@ -389,7 +468,7 @@ function prog(k,f){try{let a=JSON.parse(localStorage.getItem(k)||"[]");if(f&&Arr
 function showStart(){
   G("app").hidden=true;G("start").hidden=false;
   G("pg-custom").textContent=prog("life-achievements-v1");
-  G("pg-preset").textContent=prog("life-achievements-preset-v1",x=>PRESET.some(p=>p.id===x.id));
+  G("pg-preset").textContent=prog("life-achievements-preset-v1",x=>PRESET.some(p=>p.id===x.id)&&(!(x.hidden||x.auto)||x.doneAt));
   window.scrollTo(0,0);
 }
 [["m-custom","custom"],["m-preset","preset"]].forEach(([id,m])=>G(id).onclick=()=>{G("start").hidden=true;G("app").hidden=false;start(m);window.scrollTo(0,0)});
